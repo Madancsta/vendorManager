@@ -87,15 +87,26 @@ def edit_user():
     })
     return "Vendor edited"
 
-#getting 
+#getting orders of sepecific vendor using join query
 @frappe.whitelist(allow_guest=True)
 def orders_status(name):
     if (frappe.db.exists("Vendor", {"name": name})):
         sql_query = """SELECT v.vendor_name, o.completed_order, o.high_valued_order, o.pending_order, o.canceled_order """ \
                     """FROM tabVendor v JOIN tabOrder_que o ON v.name = o.id WHERE v.name = %s ;"""
-        return frappe.db.sql(sql_query, values= name ,as_dict=True)
+        
+        order_status = frappe.db.sql(sql_query, values=name, as_dict=True)
+        return orders_status
     else:
         return f"Vendor {name} not found"
-    
 
-        
+#ordering vendors basde on the highest completed orders
+@frappe.whitelist(allow_guest=True)
+def top_vendors():
+    sql_query = """SELECT v.vendor_name, o.completed_order """\
+                """FROM tabVendor v JOIN tabOrder_que o ON v.name = o.id """\
+                """ORDER BY o.completed_order DESC LIMIT 5;"""
+    top_vendors = frappe.db.sql(sql_query, as_dict=True)
+    return top_vendors
+
+
+ 
