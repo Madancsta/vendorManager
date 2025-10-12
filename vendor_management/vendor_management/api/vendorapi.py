@@ -95,7 +95,7 @@ def orders_status(name):
                     """FROM tabVendor v JOIN tabOrder_que o ON v.name = o.id WHERE v.name = %s ;"""
         
         order_status = frappe.db.sql(sql_query, values=name, as_dict=True)
-        return orders_status
+        return order_status
     else:
         return f"Vendor {name} not found"
 
@@ -107,6 +107,12 @@ def top_vendors():
                 """ORDER BY o.completed_order DESC LIMIT 5;"""
     top_vendors = frappe.db.sql(sql_query, as_dict=True)
     return top_vendors
+
+# getting total number of vendors
+@frappe.whitelist(allow_guest=True)
+def total_vendors():
+    total = frappe.db.count('Vendor')
+    return {"total_vendors": total}
 
 
  
