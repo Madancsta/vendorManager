@@ -1,0 +1,82 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "O-.#####",
+ "creation": "2025-10-10 13:23:44.336446",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "id",
+  "vendor_name",
+  "completed_order",
+  "high_valued_order",
+  "pending_order",
+  "canceled_order"
+ ],
+ "fields": [
+  {
+   "fieldname": "id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Id",
+   "options": "Vendor",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fetch_from": "id.vendor_name",
+   "fieldname": "vendor_name",
+   "fieldtype": "Data",
+   "label": "Vendor Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "completed_order",
+   "fieldtype": "Int",
+   "label": "Completed Order"
+  },
+  {
+   "fieldname": "high_valued_order",
+   "fieldtype": "Int",
+   "label": "High valued order"
+  },
+  {
+   "fieldname": "pending_order",
+   "fieldtype": "Int",
+   "label": "Pending order"
+  },
+  {
+   "fieldname": "canceled_order",
+   "fieldtype": "Int",
+   "label": "Canceled Order"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-12 14:18:05.284964",
+ "modified_by": "Administrator",
+ "module": "Vendor Management",
+ "name": "Order_que",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
