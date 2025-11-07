@@ -88,8 +88,9 @@ def edit_user():
     return "Vendor edited"
 
 #getting orders of sepecific vendor using join query
-@frappe.whitelist(allow_guest=True)
+@frappe.whitelist()
 def orders_status(name):
+    
     if (frappe.db.exists("Vendor", {"name": name})):
         sql_query = """SELECT v.vendor_name, o.completed_order, o.high_valued_order, o.pending_order, o.canceled_order """ \
                     """FROM tabVendor v JOIN tabOrder_que o ON v.name = o.id WHERE v.name = %s ;"""
@@ -114,5 +115,3 @@ def total_vendors():
     total = frappe.db.count('Vendor')
     return {"total_vendors": total}
 
-
- 
